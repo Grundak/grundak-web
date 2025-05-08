@@ -1,38 +1,316 @@
-.App {
-  text-align: center;
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+
+/* $$$$$$$$$$$$$ RESET $$$$$$$$$$$$$$ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  html {
+    interpolate-size: allow-keywords;
   }
 }
 
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* $$$$$$$$$$$$$ STYLES $$$$$$$$$$$$$$ */
+:root {
+  --color-primary: #0b0b0bdb;
+  --color-secondary: #181818;
+  --color-background: #f5f5f5;
+  --color-text: #0b0b0b;
+  --color-text-secondary: #f9f7f7;
+  --color-text-tertiary: #8c8c8c;
+  --color-button: #0b0b0b;
+  --color-button-secondary: #181818;
+  --color-button-text: #f5f5f5;
+
+  --text-shadow: 10px 8px 0px rgba(0, 0, 0, 0.03);
+
+  --padding-general: 1rem;
+  --padding-small: 0.5rem;
+  --padding-large: 2rem;
+  --margin-general: 1rem;
+  --margin-small: 0.5rem;
+  --margin-large: 2rem;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  margin: var(--margin-large);
+  text-transform: uppercase;
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 200;
+  text-align: center;
+  color: var(--color-text);
+  line-height: 2.5rem;
+}
+
+section p {
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+  margin: var(--margin-small);
+  text-align: center;
+  color: var(--color-text);
+  line-height: 1.5rem;
+}
+
+/* $$$$$$$$$$$$$ HEADER $$$$$$$$$$$$$$ */
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  z-index: 1000;
+}
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 25px;
+  margin: var(--margin-small);
+  position: relative;
+  /* Přidáno */
+  z-index: 1002;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--color-text);
+  border-radius: 1rem;
+  transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+  position: relative;
+}
+
+/* Stav při otevření menu */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 8px;
+  /* Posun pro vytvoření křížku */
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  /* Skryje prostřední čáru */
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: -8px;
+  /* Posun pro vytvoření křížku */
+}
+
+.menu {
+  position: absolute;
+  top: 30px;
+  /* Posun menu pod hamburger */
+  right: -5px;
+  /* Posun menu doprava */
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1001;
+
+  /* Skrytí menu před animací */
+  opacity: 0;
+  transform: translateY(-20px) rotateX(-10deg);
+  animation: menuFadeIn 0.5s ease forwards;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin: var(--margin-small);
+  padding: var(--padding-small);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-align: center;
+
+  /* Skrytí jednotlivých položek před animací */
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: menuItemFadeIn 1.5s ease forwards;
+  animation-delay: calc(var(--menu-index) * 0.15s);
+  /* Zpoždění pro každou položku */
+}
+
+.menu a {
+  color: var(--color-text);
+  text-decoration: none;
+  position: relative; /* Potřebné pro pseudo-element */
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Umístění pod text */
+  width: 0;
+  height: 1.5px; /* Tloušťka podtržení */
+  background-color: var(--color-text);
+  transition: width 0.7s ease; /* Plynulý přechod */
+}
+
+.menu a:hover::after {
+  width: 100%; /* Rozšíření podtržení na celou šířku */
+}
+
+/* $$$$$$$$$$$$$ INTRO $$$$$$$$$$$$$$ */
+
+.intro {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  padding: var(--padding-general);
+  margin: var(--margin-general);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
-.App-link {
-  color: #61dafb;
+.intro h1 {
+  font-size: 3rem;
+  margin: var(--margin-large);
+  margin-bottom: 8rem;
+  text-transform: uppercase;
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 200;
+  text-align: center;
+  color: var(--color-text);
+  text-shadow: var(--text-shadow);
+
+  /* Přidání lesku */
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
+  background-size: 300%;
+  /* Zvýšení velikosti gradientu */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.2em 0;
+  /* Přidání paddingu nahoře a dole */
+  animation: shine 20s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+/* $$$$$$$$$$$$$ FOOTER $$$$$$$$$$$$$$ */
+
+/* $$$$$$$$$$$$$ ANIMATION $$$$$$$$$$$$$$ */
+
+@keyframes shine {
+  0% {
+    background-position: 300%; /* Start gradientu mimo levou stranu */
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: -300%; /* Konec gradientu mimo pravou stranu */
+  }
+}
+
+/* Animace pro celé menu */
+@keyframes menuFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) rotateX(-10deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* Animace pro jednotlivé položky menu */
+@keyframes menuItemFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
