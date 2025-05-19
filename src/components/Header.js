@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,15 +33,29 @@ function Header() {
                 {isMenuOpen && (
                     <nav className="menu">
                         <ul>
-                            <li style={{ "--menu-index": 0 }}><a href="#intro">Intro</a></li>
-                            <li style={{ "--menu-index": 1 }}><a href="#services">Služby</a></li>
-                            <li style={{ "--menu-index": 2 }}><a href="#portfolio">Portfolio</a></li>
-                            <li style={{ "--menu-index": 3 }}><a href="#contact">Kontakt</a></li>
+                            <Link to="/" style={{ "--menu-index": 0 }}>
+                                <li>Intro</li>
+                            </Link>
+                            <Link to="/gallery" style={{ "--menu-index": 1 }}>
+                                <li>Gallery</li>
+                            </Link>
+                            <Link to="/exclusivity" style={{ "--menu-index": 2 }}>
+                                <li>Exclusivity</li>
+                            </Link>
+                            <Link to="/follow" style={{ "--menu-index": 3 }}>
+                                <li>Follow</li>
+                            </Link>
                         </ul>
                     </nav>
                 )}
             </div>
-
+            <Link to="/" className="logo">
+                <img
+                    src="../favicon-32x32.png"
+                    alt="Valentina Love Pilot"
+                    className="logo-image"
+                />
+            </Link>
         </header>
     );
 }

@@ -1,16 +1,21 @@
 {
-  "name": "grundak-web",
+  "name": "valentina-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://valentinalovepilot.com",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^12.10.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-transition-group": "^4.4.5",
+    "web-vitals": "^2.1.4",
+    "yet-another-react-lightbox": "^3.23.0"
   },
   "scripts": {
     "start": "react-scripts start",

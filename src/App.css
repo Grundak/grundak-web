@@ -74,23 +74,26 @@ h6 {
 /* $$$$$$$$$$$$$ STYLES $$$$$$$$$$$$$$ */
 :root {
   --color-primary: #0b0b0bdb;
-  --color-secondary: #181818;
+  --color-secondary: #ff41d91a;
   --color-background: #f5f5f5;
   --color-text: #0b0b0b;
   --color-text-secondary: #f9f7f7;
   --color-text-tertiary: #8c8c8c;
   --color-button: #0b0b0b;
-  --color-button-secondary: #181818;
+  --color-button-secondary: #921f96;
   --color-button-text: #f5f5f5;
 
-  --text-shadow: 10px 8px 0px rgba(0, 0, 0, 0.03);
+  --text-shadow: 10px 8px 0px #ff41d91a;
+  --text-shadow-paragraph: 8px 6px 3px rgba(255, 65, 217, 0.1);
+
+  --border-box: 1px solid rgba(0, 0, 0, 0.1);
 
   --padding-general: 1rem;
   --padding-small: 0.5rem;
   --padding-large: 2rem;
   --margin-general: 1rem;
   --margin-small: 0.5rem;
-  --margin-large: 2rem;
+  --margin-large: 4rem 2rem;
 }
 
 body {
@@ -112,6 +115,17 @@ section h2 {
   line-height: 2.5rem;
 }
 
+section h3 {
+  font-size: 1.2rem;
+  margin: var(--margin-large);
+  text-transform: uppercase;
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 200;
+  text-align: center;
+  color: var(--color-text);
+}
+
+
 section p {
   font-size: 1.2rem;
   font-family: "Lato", sans-serif;
@@ -119,6 +133,38 @@ section p {
   text-align: center;
   color: var(--color-text);
   line-height: 1.5rem;
+  text-shadow: var(--text-shadow-paragraph);
+}
+
+/* $$$$$$$$$$$$$ SECTION BUTTON $$$$$$$$$$$$$$ */
+
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin: 4rem auto;
+  width: 15rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #921f96;
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #5d1460;
+}
+
+.btn a {
+  text-align: center;
+  text-decoration: none;
 }
 
 /* $$$$$$$$$$$$$ HEADER $$$$$$$$$$$$$$ */
@@ -126,6 +172,7 @@ section p {
 .App-header {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   width: 100%;
   background-color: var(--color-background);
   color: var(--color-text);
@@ -206,6 +253,7 @@ section p {
   font-weight: 400;
   font-size: 1.2rem;
   text-align: center;
+  text-transform: uppercase;
 
   /* Skrytí jednotlivých položek před animací */
   opacity: 0;
@@ -236,6 +284,11 @@ section p {
   width: 100%; /* Rozšíření podtržení na celou šířku */
 }
 
+.logo-image {
+  padding-top: 5px;
+  position: fixed;
+}
+
 /* $$$$$$$$$$$$$ INTRO $$$$$$$$$$$$$$ */
 
 .intro {
@@ -243,10 +296,14 @@ section p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh -41px);
   padding: var(--padding-general);
   margin: var(--margin-general);
   background-color: var(--color-background);
+  background-image: url(siluetka.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   color: var(--color-text);
 }
 
@@ -274,9 +331,206 @@ section p {
   animation: shine 20s linear infinite;
 }
 
+/* $$$$$$$$$ GALLERY $$$$$$$$$$ */
 
+/* Kontejner galerie */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responzivní mřížka */
+  gap: 0.5rem; /* Mezera mezi buňkami */
+  padding: 0.5rem; /* Odsazení kolem galerie */
+  background-color: var(--color-background);
+  animation: slideInFromRight 1.3s ease-out;
+}
+
+/* Obalující div pro obrázky */
+.gallery-container > div {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* Poměr stran 1:1 (čtverec) */
+  overflow: hidden; /* Skrytí přetékajícího obsahu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background); /* Záložní barva pro případ, že se obrázek nenačte */
+  border-radius: 8px; /* Zaoblené rohy */
+}
+
+/* Obrázky v galerii */
+.gallery-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Zachování poměru stran obrázku a vyplnění prostoru */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animace při hoveru */
+  cursor: pointer;
+  border: var(--border-box); /* Rámeček kolem obrázku */
+}
+
+/* Efekt při najetí myší na obrázek */
+.gallery-container img:hover {
+  transform: scale(1.05); /* Jemné zvětšení */
+  box-shadow: var(--text-shadow); /* Zvýraznění stínu */
+}
+
+.exclusivity-link {
+  color: #921f96; /* Barva textu */
+  font-weight: bold;
+  text-decoration: none; /* Odstranění podtržení */
+  transition: color 0.3s ease;
+}
+
+.exclusivity-link:hover {
+  color: #5d1460; /* Barva při hoveru */
+  text-decoration: underline; /* Přidání podtržení při hoveru */
+}
+/* $$$$$$$$$$$$$$ EXCLUSIVITY $$$$$$$$$$$$$$ */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background); /* Světlé pozadí */
+  margin: var(--margin-large);
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 400px; /* Maximální šířka formuláře */
+  padding: 1rem;
+  background-color: var(--color-secondary); /* Bílé pozadí formuláře */
+  border-radius: 8px; /* Zaoblené rohy */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.186); /* Jemný stín */
+}
+
+.contact-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: var(--border-box);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #007bff; /* Modrá barva při zaostření */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.contact-form .submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #921f96;
+  color: var(--color-button-text);
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form .submit-btn:hover {
+  background-color: #5d1460;
+}
+
+/* $$$$$$$$$$$$$ FOLLOW $$$$$$$$$$$$$$ */
+.linktree {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  width: 6rem;
+  height: 6rem;
+}
 
 /* $$$$$$$$$$$$$ FOOTER $$$$$$$$$$$$$$ */
+
+.App-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  padding: var(--padding-general);
+  margin-top: var(--margin-large);
+  text-align: center;
+  text-transform: uppercase
+}
+
+.App-footer span {
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--color-button-secondary);
+  margin: var(--margin-large);
+  border-radius: 5px;
+  box-shadow: var(--text-shadow);
+}
+
+.App-footer a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.App-footer a:hover {
+  color: var(--color-button);
+  text-shadow: var(--text-shadow);
+}
+
+.footer-lists {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: var(--margin-small);
+  gap: 2rem;
+  text-align: left;
+}
+
+.footer-lists ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-lists a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+}
+
+.footer-lists a:hover {
+  color: var(--color-button);
+  text-shadow: var(--text-shadow);
+}
+
+.App-footer p {
+  font-family: "Monserrat", sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: var(--margin-small);
+}
+
+
+
 
 /* $$$$$$$$$$$$$ ANIMATION $$$$$$$$$$$$$$ */
 
@@ -312,5 +566,31 @@ section p {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+
+/* $$$$$$$$$$$$$$ MEDIA QUERIES $$$$$$$$$$$$$$ */
+@media (max-width: 576px) {
+ .intro h1 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  section h2 {
+    font-size: 1.2rem;
+    margin: var(--margin-small);
+  }
+  section p {
+    font-size: 1rem;
+    margin: var(--margin-small);
+  }
+
+  .footer-lists a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: "Lexend Zetta", sans-serif;
+    font-weight: 200;
+    font-size: 1rem;
   }
 }
