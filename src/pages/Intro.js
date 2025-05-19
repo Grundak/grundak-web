@@ -5,14 +5,14 @@ function Intro() {
   return (
     <div>
       <section id="intro" className="intro">
-        <h1><strong>Valentina Love</strong> Pilot</h1>
-        <h2>Model, army officer, pilot - Adult film star</h2>
+        <h1><strong>Grundak</strong></h1>
+        <h2>Web Developer - Specialist in Presentation Websites</h2>
         <p>
-          Hey, don't be a stranger! Curious to learn more about <strong>Valentina Love Pilot</strong>? 
-          Feel free to explore and discover more about me!
+          Welcome! Curious to learn more about <strong>Grundak</strong>? 
+          Feel free to explore my services, references, and get in touch!
         </p>
-        <Link to="/gallery" className="btn">
-          Go to Gallery
+        <Link to="/services" className="btn">
+          Explore Services
         </Link>
       </section>
     </div>

@@ -14,7 +14,7 @@ function Footer() {
                 <ul>
                     <li><Link to="/privacy">Privacy</Link></li> {/* Odkaz na stránku Privacy */}
                     <li><Link to="/terms">Terms</Link></li> {/* Odkaz na stránku Terms */}
-                    <li><Link to="/exclusivity#form">Contact</Link></li> {/* Odkaz na formulář v Exclusivity */}
+                    <li><Link to="/contact">Contact</Link></li> {/* Odkaz na stránku Contact */}
                 </ul>
             </div>
             <span></span>

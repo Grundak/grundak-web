@@ -36,14 +36,14 @@ function Header() {
                             <Link to="/" style={{ "--menu-index": 0 }}>
                                 <li>Intro</li>
                             </Link>
-                            <Link to="/gallery" style={{ "--menu-index": 1 }}>
-                                <li>Gallery</li>
+                            <Link to="/services" style={{ "--menu-index": 1 }}>
+                                <li>Services</li>
                             </Link>
-                            <Link to="/exclusivity" style={{ "--menu-index": 2 }}>
-                                <li>Exclusivity</li>
+                            <Link to="/references" style={{ "--menu-index": 2 }}>
+                                <li>References</li>
                             </Link>
-                            <Link to="/follow" style={{ "--menu-index": 3 }}>
-                                <li>Follow</li>
+                            <Link to="/contact" style={{ "--menu-index": 3 }}>
+                                <li>Contact</li>
                             </Link>
                         </ul>
                     </nav>
